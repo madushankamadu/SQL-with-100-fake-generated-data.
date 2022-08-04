@@ -12,7 +12,13 @@
         <label>Product</label></br>
         <input type="text" name="product" id="name" value="{{$product->product}}" class="form-control"></br>
         <label>Category</label></br>
-        <input type="text" name="category" id="address" value="{{$product->category}}" class="form-control"></br>
+        <select class="form-select form-select-sm mb-3" name="category" id="filter_porducts">
+          <option selected="selected" disabled>Select number id</option>
+          @foreach($filter as $item)
+              <option value="{{$item->category}}">{{$item->category}}</option>
+          @endforeach
+      </select>
+        {{-- <input type="text" name="category" id="address" value="{{$product->category}}" class="form-control"></br> --}}
         
         <input type="submit" value="Update" class="btn btn-success"></br>
     </form>

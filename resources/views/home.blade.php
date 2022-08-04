@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Find Products') }}</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -16,27 +15,20 @@
                     <div>
                         <form action="saveTask" method="POST">
                             {{ csrf_field() }}
+                            <select class="form-select form-select-sm mb-3" name="category" id="filter_porducts">
+                                <option selected="selected" disabled>Select number id</option>
+                                @foreach($filter as $item)
+                                    <option value="{{$item->category}}">{{$item->category}}</option>
+                                @endforeach
+                            </select>
                             <input class="form-control" type="text" name="product" placeholder="Enter the product name"/></br>
-                            <input class="form-control" type="text" name="category" placeholder="enter the category name"/></br>
+                            
                             <Button type="submit" class="btn btn-success"><i class="fa fa-eye " aria-hidden="true"></i> ADD PRODUCTS HERE</Button>
 
                         </form>
                         <br>
                         <br>
-                    </div>
-                    <div class="col-md">
-                        <form class="" action="getCategory" method="get">
-                            <select class="form-select form-select-lg mb-3" name="category" id="filter_porducts">
-                                <option selected="selected">Select number id</option>
-                                @foreach($filter as $item)
-                                    <option value="{{$item->category}}">{{$item->category}}</option>
-                                @endforeach
-                            </select>
-                            <button class="btn btn-success" type="submit">FILTER DATA</button>
-                        </form>
-                        
-                            
-                        
+                    </div>   
                     </div>
                     <table class="table">
                         <thead>

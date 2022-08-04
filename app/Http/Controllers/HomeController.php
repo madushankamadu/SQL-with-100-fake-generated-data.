@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use DB;
 
 class HomeController extends Controller
@@ -19,7 +20,7 @@ class HomeController extends Controller
     {
         
         $products = Product::all();
-        $filter= Product::select('category')->distinct()->get();
+        $filter= Category::select('category')->distinct()->get();
         return view('home')->with('products',$products)->with('filter', $filter);
     }
     public function store(Request $request)
@@ -47,7 +48,7 @@ class HomeController extends Controller
 
         $items = $category->all();
         
-        $filter= Product::select('category')->distinct()->get();
+        $filter= Category::select('category')->distinct()->get();
         
         $products = DB::select('select * from products where category = ?', [$items['category']]);
 

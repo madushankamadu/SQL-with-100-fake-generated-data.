@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 
 
@@ -13,7 +14,8 @@ class ProductController extends Controller
     public function editRoute($id)
     {
         $product = Product::find($id);
-        return view('edit')->with('product', $product); 
+        $filter= Category::select('category')->distinct()->get();
+        return view('edit')->with('product', $product)->with('filter', $filter); 
     }
 
 
@@ -40,12 +42,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product'=>'required|max:191',
             'category'=>'required|max:191',
         ]);
 
-        $category =new Product;
-        $category->product=$request->product;
+        $category =new Category;
         $category->category=$request->category;
         $category->save();
         return response()->json(['message'=>'product added successfully'], 200);
