@@ -21,4 +21,5 @@
 </ul>
 <br>
 <li>Open the browser and go to the local server link (http://127.0.0.1:8000/) to se the project.</li>
+<li>For adding new categories, you can open the postman and open a new POST on it, then give the link like this "[server link]/api/category/add". Then you can pass data via API </li>
 </ol>
